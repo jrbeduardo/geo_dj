@@ -86,7 +86,7 @@ def calculate_distance_view(request):
         'map': m,
         'destination': destination,
         'ip': ip,
-        'ip': ip_status,
+        'ip_status': ip_status,
         'total_visitors': total_visitors
     }
     return render(request, 'base/main.html', context)
