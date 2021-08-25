@@ -14,7 +14,6 @@ def calculate_distance_view(request):
     #initial Values
     distance = None
     destination = None
-    total_visitors = Visitor.objects.all().count()
     form = MeasurementModelForm(request.POST or None)
     geolocator = Nominatim(user_agent='ip_address')
     ip, ip_status = get_ip_address(request)
@@ -23,7 +22,6 @@ def calculate_distance_view(request):
 
     # location coordinates
     pointA = (l_lat, l_lon )
-
 
     # Initial folium map
     m = folium.Map(width=800, height=500,
@@ -47,6 +45,8 @@ def calculate_distance_view(request):
             latitud = l_lat,
             longitud= l_lon
         )
+    total_visitors = Visitor.objects.all().count()
+
     if form.is_valid():
         instance = form.save(commit=False)
         destination_ = form.cleaned_data.get('destination')
