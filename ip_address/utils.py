@@ -31,12 +31,13 @@ def get_ip_address(request):
     if ip is None:
     # Unable to get the client's IP address
         ip='0.0.0.0'
+        ip_status = 'Unable to get the client IP address'
     else:
         # We got the client's IP address
         if is_routable:
             # The client's IP address is publicly routable on the Internet
-            ip+=' Public'
+            ip_status = 'Public'
         else:
             # The client's IP address is private
-            ip+=' Private'
-    return ip
+            ip_status = 'Private'
+    return ip, ip_status

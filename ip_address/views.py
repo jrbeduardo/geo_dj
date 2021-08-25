@@ -17,8 +17,7 @@ def calculate_distance_view(request):
     total_visitors = Visitor.objects.all().count()
     form = MeasurementModelForm(request.POST or None)
     geolocator = Nominatim(user_agent='ip_address')
-    ip_ = get_ip_address(request)
-    ip = '189.217.85.228'
+    ip, ip_status = get_ip_address(request)
     country, city, l_lat, l_lon = get_geo(ip)
     location = geolocator.geocode(city)
 
@@ -86,7 +85,8 @@ def calculate_distance_view(request):
         'form': form,
         'map': m,
         'destination': destination,
-        'ip': ip_,
+        'ip': ip,
+        'ip': ip_status,
         'total_visitors': total_visitors
     }
     return render(request, 'base/main.html', context)
