@@ -1,0 +1,41 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <style>
+      body {
+        background: rgb(180,80,58);
+        background: radial-gradient(circle, rgba(180,80,58,1) 0%, rgba(253,29,29,1) 66%, rgba(252,176,69,1) 100%);
+        font-family: 'Space Mono', monospace;
+      }
+    </style>
+    <script>
+      $( document ).ready(function() {
+        document.getElementById('cv_download').click();
+      });
+    </script>
+    <title>Geo Django | {% block title %}{% endblock title %}</title>
+  </head>
+  <body>
+    <a href= 'https://drive.google.com/uc?id=1s99GQpOPuuzaHB8D_85czUrPSnUTdgqn&export=download&authuser=0'
+      id='cv_download' style="display: none"> Download File</a>
+    <div class="container">
+      {% block content %}
+
+      {% endblock content %}
+    </div>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+ </body>
+</html>
