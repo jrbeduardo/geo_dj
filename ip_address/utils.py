@@ -1,6 +1,6 @@
 from django.contrib.gis.geoip2 import GeoIP2
 from google_drive_downloader import GoogleDriveDownloader as gdd
-
+from ipware import get_client_ip
 
 # helper functions
 def get_geo(ip):
@@ -27,9 +27,16 @@ def get_zoom(distance):
         return 2
 
 def get_ip_address(request):
-    x_forwarded_for = request.META.get('HTTP_FORWARDED_FOR')
-    if x_forwarded_for:
-        ip = x_forwarded_for.split(',')[-1].strip()
+    ip, is_routable = get_client_ip(request)
+    if ip is None:
+    # Unable to get the client's IP address
+        ip='0.0.0.0'
     else:
-        ip = request.META.get('REMOTE_ADDR')
-    return x_forwarded_for
+        # We got the client's IP address
+        if is_routable:
+            # The client's IP address is publicly routable on the Internet
+            ip+=' Public'
+        else:
+            # The client's IP address is private
+            ip+=' Private'
+    return ip
