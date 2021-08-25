@@ -32,4 +32,4 @@ def get_ip_address(request):
         ip = x_forwarded_for.split(',')[-1].strip()
     else:
         ip = request.META.get('REMOTE_ADDR')
-    return ip
+    return request.META.get('REMOTE_ADDR')
